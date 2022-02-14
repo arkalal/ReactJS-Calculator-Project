@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Header.css'
 
 const Header = () => {
+
+    const scrollPresent = useRef()
+
+    useEffect(() => {
+        scrollPresent.current.scrollIntoView()
+    }, [])
+
     return (
         <div className='header customScroll'>
             <div className="headerHistory">
@@ -18,7 +25,7 @@ const Header = () => {
 
             <br />
 
-            <p className="headerResult">150</p>
+            <p ref={scrollPresent} className="headerResult">150</p>
         </div>
     )
 }

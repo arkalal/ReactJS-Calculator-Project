@@ -3,14 +3,14 @@ import './KeyPad.css'
 import keys from './Keys'
 import symbols from './Symbols'
 
-const KeyPad = () => {
+const KeyPad = ({ handleKey }) => {
     return (
         <div className='keypad'>
             <div className="keypadKeys">
                 {
                     keys.map((item, index) => {
                         return <>
-                            <p key={index}> {item.label} </p>
+                            <p onClick={() => { handleKey(item.keyCode, item.label) }} key={index}> {item.label} </p>
                         </>
                     })
                 }
@@ -20,7 +20,7 @@ const KeyPad = () => {
                 {
                     symbols.map((item, index) => {
                         return <>
-                            <p key={index}> {item.label} </p>
+                            <p onClick={() => { handleKey(item.keyCode, item.value) }} key={index}> {item.label} </p>
                         </>
                     })
                 }
