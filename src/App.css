@@ -18,6 +18,23 @@
   --text-color-2: #bbbcbc;
 }
 
+.customScroll::-webkit-scrollbar{
+    height: 5px;
+    width: 5px;
+}
+
+.customScroll::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+.customScroll::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+.customScroll::-webkit-scrollbar-thumb:hover{
+    background-color: gray;
+}
+
 .appCalculator{
     height: 500px;
     width: 280px;
