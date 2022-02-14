@@ -18,18 +18,37 @@ const App = () => {
 
         if (numbers.includes(key)) {
             if (key === '0') {
-                if (Expression.length === 0) return
+                if (!Expression) return
             }
             setExpression(Expression + key)
         }
         else if (operators.includes(key)) {
-            if (Expression.length === 0) return
+            if (!Expression) return
+
+            const lastChar = Expression.slice(-1)
+
+            if (operators.includes(lastChar)) return
+            if (lastChar === '.') return
+
+            setExpression(Expression + key)
+        }
+        else if (key === '.') {
+            if (!Expression) return
+
+            const lastChar = Expression.slice(-1)
+
+            if (!numbers.include(lastChar)) return
+            if (operators.include(lastChar)) return
+
+            setExpression(Expression + key)
         }
         else if (keycode === 13) {
             console.log('enter')
         }
         else if (keycode === 8) {
-            console.log('backspace');
+            if (!Expression) return
+
+            setExpression(Expression.slice(0, -1))
         }
     }
 
@@ -44,7 +63,7 @@ const App = () => {
                     <img src={IsDark ? '/assets/moon.png' : '/assets/sun.png'} alt="" />
                 </div>
 
-                <Header></Header>
+                <Header Expression={Expression}></Header>
                 <KeyPad handleKey={handleKey}></KeyPad>
             </div>
         </div>

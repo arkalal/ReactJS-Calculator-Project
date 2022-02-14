@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Header.css'
 
-const Header = () => {
+const Header = ({ Expression }) => {
 
     const scrollPresent = useRef()
 
@@ -20,7 +20,7 @@ const Header = () => {
             <br />
 
             <div className="headerExpression customScroll">
-                <p>10 + 56</p>
+                <p> {Expression} </p>
             </div>
 
             <br />
