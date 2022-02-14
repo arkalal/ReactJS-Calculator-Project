@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Header.css'
 
-const Header = ({ Expression }) => {
+const Header = ({ Expression, result }) => {
 
     const scrollPresent = useRef()
 
@@ -25,7 +25,7 @@ const Header = ({ Expression }) => {
 
             <br />
 
-            <p ref={scrollPresent} className="headerResult">150</p>
+            <p ref={scrollPresent} className="headerResult"> {result} </p>
         </div>
     )
 }

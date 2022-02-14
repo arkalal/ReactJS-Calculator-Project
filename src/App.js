@@ -20,6 +20,8 @@ const App = () => {
             if (key === '0') {
                 if (!Expression) return
             }
+
+            calculateResult(Expression + key)
             setExpression(Expression + key)
         }
         else if (operators.includes(key)) {
@@ -43,13 +45,30 @@ const App = () => {
             setExpression(Expression + key)
         }
         else if (keycode === 13) {
-            console.log('enter')
+            if (!Expression) return
+
+            calculateResult(Expression)
         }
         else if (keycode === 8) {
             if (!Expression) return
 
+            calculateResult(Expression.slice(0, -1))
             setExpression(Expression.slice(0, -1))
         }
+    }
+
+    const calculateResult = (exp) => {
+        if (!exp) return
+
+        const lastChar = exp.slice(-1)
+
+        if (!numbers.includes(lastChar)) {
+            exp.slice(0, -1)
+        }
+
+        // eslint-disable-next-line no-eval
+        const result = eval(exp).toFixed(2) + ''
+        setResult(result)
     }
 
     return (
@@ -63,7 +82,7 @@ const App = () => {
                     <img src={IsDark ? '/assets/moon.png' : '/assets/sun.png'} alt="" />
                 </div>
 
-                <Header Expression={Expression}></Header>
+                <Header Expression={Expression} result={Result}></Header>
                 <KeyPad handleKey={handleKey}></KeyPad>
             </div>
         </div>
